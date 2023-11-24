@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Runtime.CompilerServices;
 using Balta.ContentContext;
 
 var articles = new List<Article>();
@@ -24,7 +25,7 @@ courses.Add(courseOOP);
 courses.Add(courseCsharp);
 courses.Add(courseAspNet);
 
-var careerItem2 = new CareerItem(2, "Curso de OOP", "", courseOOP);
+var careerItem2 = new CareerItem(2, "Curso de OOP", "", null);
 var careerItem = new CareerItem(1, "Curso de C#", "", courseCsharp);
 var careerItem3 = new CareerItem(3, "Curso de ASP.NET", "", courseAspNet);
 
@@ -42,7 +43,12 @@ foreach (var career in careers)
     foreach (var item in career.Items.OrderBy(x => x.Order))
     {
         Console.WriteLine($"{item.Order} - {item.Title}");
-        Console.WriteLine(item.Course.Title);
-        Console.WriteLine(item.Course.Url);
+        Console.WriteLine(item.Course?.Title);
+        Console.WriteLine(item.Course?.Url);
+
+        foreach (var notification in item.Notifications)
+        {
+            Console.WriteLine($"{notification.Property} - {notification.Messege}");
+        }
     }
 }
