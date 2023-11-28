@@ -1,6 +1,5 @@
-﻿using System.Linq;
-using System.Runtime.CompilerServices;
-using Balta.ContentContext;
+﻿using Balta.ContentContext;
+using Balta.SubscritionContext;
 
 var articles = new List<Article>();
 
@@ -51,4 +50,9 @@ foreach (var career in careers)
             Console.WriteLine($"{notification.Property} - {notification.Messege}");
         }
     }
+
+    var payPalSubscription = new PayPalSubscription();
+    var student = new Student();
+
+    student.CreateSubscription(payPalSubscription);
 }
